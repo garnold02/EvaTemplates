@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FinalPig.Maui.Views.SaveView"
+             xmlns:vm="clr-namespace:Zh.Maui.ViewModels"
+             x:DataType="vm:SaveViewModel"
+             Title="Save Game">
+    
+    <VerticalStackLayout Margin="8"
+                         Spacing="8">
+        
+        <Entry Text="{Binding Mode=TwoWay, Path=Name}"
+               Placeholder="Enter a name for the save file..."/>
+        
+        <Button Command="{Binding SaveCommand}"
+                Text="Save Game"/>
+        
+        <Button Command="{Binding CancelCommand}"
+                Text="Cancel" />
+
+        <ListView ItemsSource="{Binding Files}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="vm:SaveFileViewModel">
+                    
+                    <TextCell Text="{Binding Name}"
+                              Detail="{Binding Date}"
+                              Command="{Binding SelectCommand}"/>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </VerticalStackLayout>
+    
+</ContentPage>
